@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if users %}
+        {% if user.is_authenticated %}
+            {% for user in users %}
+                <div class="alert alert-success mt-4">
+                    <h4>{{ user.username }}</h4>
+                    <a href="{% url 'main'%}{{ user.id }}">Написать</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h6 class='alert alert-success mt-4'>Для того, чтобы начать общение, авторизуйтесь</h6>
+            <a href={% url 'login' %} class='btn btn-success mt-4'>Авторизоваться</a>
+        {% endif %}
+    {% else %}
+        <h1>Пользователей пока нет.</h1>
+    {% endif %}
+{% endblock %}
